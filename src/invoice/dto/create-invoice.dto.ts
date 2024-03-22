@@ -18,6 +18,7 @@ export class CreateInvoiceDto {
 
   @IsDateString()
   date: Date;
+  
 }
 
 

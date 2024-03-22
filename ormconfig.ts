@@ -2,6 +2,8 @@
 import { Invoice } from './src/entities/invoice.entity';
 import { Blog } from './src/entities/blog.entity';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { Registration } from 'src/entities/registration.entity';
+import { LoginModule } from 'src/login/login.module';
 
 const config: PostgresConnectionOptions = {
   type: 'postgres',
@@ -10,7 +12,7 @@ const config: PostgresConnectionOptions = {
   port: 5432,
   username: 'postgres',
   password: 'Abdulla',
-  entities: [Blog, Invoice ],
+  entities: [Blog, Invoice,Registration],
   synchronize: true
 };
 

@@ -10,6 +10,7 @@ export class InvoiceService {
 
   constructor(
     @InjectRepository(Invoice) private readonly invoiceRepository: Repository<Invoice>,
+    
   ) {
   }
 

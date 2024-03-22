@@ -24,9 +24,13 @@ export class Invoice {
     @Column({ type: 'date' })
     date: Date;
 
+    
+
     @BeforeInsert()
   async HashPassword() {
     this.transactionId = await bcrypt.hash(this.transactionId, 10);
   }
+
+ 
 
 }
