@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete,ValidationPipe, UsePipes, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,ValidationPipe, UsePipes, NotFoundException, UseGuards } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
+import { AdminGuard } from 'src/login/admin.guard';
 
 @Controller('blog')
 export class BlogController {
@@ -14,18 +15,21 @@ export class BlogController {
   }
 
   @Get()
+  @UseGuards(AdminGuard)
   async findAll() {
     const allPosts = await this.blogService.findAll();
     return allPosts;
   }
 
   @Get(':user_id')
+  @UseGuards(AdminGuard)
   findOne(@Param('user_id') user_id: string) {
     return this.blogService.findOne(+user_id);
   }
 
   
   @Patch(':user_id')
+  @UseGuards(AdminGuard)
 async update(@Param('user_id') user_id: string, @Body() updateBlogDto: UpdateBlogDto) {
   const updatedBlog = await this.blogService.update(+user_id, updateBlogDto);
   if (updatedBlog) {
@@ -37,6 +41,7 @@ async update(@Param('user_id') user_id: string, @Body() updateBlogDto: UpdateBlo
 }
 
 @Delete(':user_id')
+@UseGuards(AdminGuard)
   remove(@Param('user_id') user_id: string) {
     return this.blogService.remove(+user_id);
   }

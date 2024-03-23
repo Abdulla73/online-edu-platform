@@ -4,13 +4,15 @@ import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 
 
+
 @Injectable()
 export class AuthService {
   constructor(
     private readonly RegistrationService: RegistrationService,
     private readonly jwtService: JwtService,
-  ) {}
-
+  ) {
+   
+  }
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.RegistrationService.findOne(email);
     if (user && await compare(password, user.user_password)) {

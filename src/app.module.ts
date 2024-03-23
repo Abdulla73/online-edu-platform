@@ -10,12 +10,13 @@ import { LoginModule } from './login/login.module';
 import config from 'ormconfig';
 import { JwtMiddleware } from './middleware/login.middleware';
 import { ContractFormModule } from './contract-form/contract-form.module';
+import { JwtModule } from '@nestjs/jwt';
 
 
 
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), BlogModule, InvoiceModule, RegistrationModule, LoginModule, ContractFormModule],
+  imports: [TypeOrmModule.forRoot(config), BlogModule, InvoiceModule, RegistrationModule, LoginModule, ContractFormModule,],
   controllers: [AppController],
   providers: [AppService],
 })

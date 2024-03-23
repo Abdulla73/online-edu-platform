@@ -6,6 +6,7 @@ import { RegistrationModule } from 'src/registration/registration.module';
 import { RegistrationService } from 'src/registration/registration.service';
 import { TypeOrmModule } from '@nestjs/typeorm'; // Import TypeOrmModule
 import { Registration } from 'src/entities/registration.entity';
+import { JwtStrategy } from './JwtStrategy';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { Registration } from 'src/entities/registration.entity';
     TypeOrmModule.forFeature([Registration]), // Provide RegistrationRepository here
   ],
   controllers: [AuthController],
-  providers: [AuthService, RegistrationService],
+  providers: [AuthService, RegistrationService,JwtStrategy],
   exports: [AuthService],
 })
 export class LoginModule {}

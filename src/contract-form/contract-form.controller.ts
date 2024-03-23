@@ -16,7 +16,8 @@ export class ContractFormController {
   }
 
   @Get()
-  @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard,InstructorGuard)
+  
   findAll() {
     return this.contractFormService.findAll();
   }
