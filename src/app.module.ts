@@ -9,13 +9,17 @@ import { RegistrationModule } from './registration/registration.module';
 import { LoginModule } from './login/login.module';
 import config from 'ormconfig';
 import { JwtMiddleware } from './middleware/login.middleware';
+import { ContractFormModule } from './contract-form/contract-form.module';
 
 
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), BlogModule, InvoiceModule, RegistrationModule, LoginModule],
+  imports: [TypeOrmModule.forRoot(config), BlogModule, InvoiceModule, RegistrationModule, LoginModule, ContractFormModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
-
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(JwtMiddleware).forRoutes('login');
+  }
+}

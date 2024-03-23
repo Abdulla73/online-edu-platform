@@ -13,6 +13,9 @@ export class Blog {
 
   @Column({ nullable: false })
   description: string;
+
+  @Column({ nullable: true })
+  answer: string;
 }
   
 

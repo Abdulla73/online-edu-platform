@@ -4,6 +4,7 @@ import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Invoice } from 'src/entities/invoice.entity';
+import { AuthService } from 'src/login/login.service';
 
 @Injectable()
 export class InvoiceService {
@@ -15,7 +16,6 @@ export class InvoiceService {
   }
 
   async create(createInvoiceDto: CreateInvoiceDto): Promise<Invoice> {
-    
     const transactionId = this.generateTransactionId();
     const invoice = this.invoiceRepository.create({ ...createInvoiceDto, transactionId });
     return await this.invoiceRepository.save(invoice);

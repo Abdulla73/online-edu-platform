@@ -23,10 +23,6 @@ export class CreateRegistrationDto {
     @IsNotEmpty({ message: 'Password can not be empty' })
     user_password: string;
 
-    @MaxLength(11)
-    @MinLength(11)
-    @IsNumber()
-    @IsNotEmpty({ message: 'Enter a valid phone number' })
-    phone_number: number;
+    
 
 }

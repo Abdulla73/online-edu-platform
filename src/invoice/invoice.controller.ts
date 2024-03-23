@@ -4,13 +4,16 @@ import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { Invoice } from 'src/entities/invoice.entity';
 
+@Controller('auth')
 @Controller('invoice')
 export class InvoiceController {
   constructor(private readonly invoiceService: InvoiceService) {}
-
+  
   @Post()
   @UsePipes(new ValidationPipe())
+  
   create(@Body(ValidationPipe) createInvoiceDto: CreateInvoiceDto): Promise<Invoice> {
+    
     return this.invoiceService.create(createInvoiceDto);
   }
 

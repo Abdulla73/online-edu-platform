@@ -1,10 +1,10 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreateBlogDto } from './create-blog.dto';
+import { CreateContractFormDto } from './create-contract-form.dto';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class UpdateBlogDto extends PartialType(CreateBlogDto) {
+export class UpdateContractFormDto extends PartialType(CreateContractFormDto) {
     @IsNotEmpty()
     @IsString()
     answer: string;
+    
 }
-

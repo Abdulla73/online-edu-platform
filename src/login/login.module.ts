@@ -18,5 +18,6 @@ import { Registration } from 'src/entities/registration.entity';
   ],
   controllers: [AuthController],
   providers: [AuthService, RegistrationService],
+  exports: [AuthService],
 })
 export class LoginModule {}

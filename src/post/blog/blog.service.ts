@@ -38,5 +38,4 @@ export class BlogService {
     });
     await this.BlogRepo.remove(Blog)
   }
-
 }
