@@ -19,6 +19,9 @@ export class Registration {
     @Column({ unique: false, nullable: false })
     user_password: string;
 
+    @Column({ unique: false, nullable: false })
+    role: string;
+
     @BeforeInsert()
   async HashPassword() {
     this.user_password = await bcrypt.hash(this.user_password, 10);

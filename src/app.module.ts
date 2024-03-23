@@ -13,6 +13,7 @@ import { ContractFormModule } from './contract-form/contract-form.module';
 
 
 
+
 @Module({
   imports: [TypeOrmModule.forRoot(config), BlogModule, InvoiceModule, RegistrationModule, LoginModule, ContractFormModule],
   controllers: [AppController],
@@ -20,6 +21,6 @@ import { ContractFormModule } from './contract-form/contract-form.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(JwtMiddleware).forRoutes('login');
+    consumer.apply(JwtMiddleware).forRoutes('contract-form');
   }
 }

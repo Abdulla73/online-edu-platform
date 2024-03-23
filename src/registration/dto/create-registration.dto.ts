@@ -20,8 +20,13 @@ export class CreateRegistrationDto {
     @IsString()
     @Matches(/^[a-zA-Z0-9!@#$%^&*()_+]*$/, { message: 'input a valid password' })
 
+    
     @IsNotEmpty({ message: 'Password can not be empty' })
     user_password: string;
+
+    @IsString()
+    @IsNotEmpty({ message: 'Password can not be empty' })
+    role: string;
 
     
 

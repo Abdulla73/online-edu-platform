@@ -25,23 +25,27 @@ export class AuthService {
       email: user.email, 
       id: user.id, 
       user_mail: user.user_email, 
-      user_id: user.user_id 
+      user_id: user.user_id,
+      role: user.role // Include the 'role' field in the payload
     }; 
+    console.log("Token payload:", payload); // Log the payload
     const accessToken = this.jwtService.sign(payload); 
     return { 
       accessToken, 
       user_email: user.user_email, 
       user_id: user.user_id 
     }; 
-  }
+}
 
-  async decodeToken(token: string): Promise<{ email: string, id: number, user_mail: string, user_id: number } | null> {
+
+  async decodeToken(token: string): Promise<{ email: string, id: number, user_mail: string, user_id: number, role: string } | null> {
     try {
       const payload = this.jwtService.verify(token); 
-      return { email: payload.email, id: payload.id, user_mail: payload.user_mail, user_id: payload.user_id }; 
+      return { email: payload.email, id: payload.id, user_mail: payload.user_mail, user_id: payload.user_id, role: payload.role }; // Include 'role' property
     } catch (error) {
       return null; 
     }
   }
+  
 
 }

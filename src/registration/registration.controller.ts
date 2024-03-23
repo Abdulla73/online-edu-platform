@@ -23,14 +23,14 @@ export class RegistrationController {
     return this.registrationService.findOne(user_email);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRegistrationDto: UpdateRegistrationDto) {
-    return this.registrationService.update(+id, updateRegistrationDto);
+  @Patch('user_email')
+  update(@Param('user_email') user_email: string, @Body() updateRegistrationDto: UpdateRegistrationDto) {
+    return this.registrationService.update(user_email, updateRegistrationDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.registrationService.remove(+id);
+  @Delete(':user_email')
+  remove(@Param('user_email') user_email: string) {
+    return this.registrationService.remove(user_email);
   }
   
 }

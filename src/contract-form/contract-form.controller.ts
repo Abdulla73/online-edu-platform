@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, NotFoundException, UseGuards } from '@nestjs/common';
 import { ContractFormService } from './contract-form.service';
 import { CreateContractFormDto } from './dto/create-contract-form.dto';
 import { UpdateContractFormDto } from './dto/update-contract-form.dto';
+import { AdminGuard } from 'src/login/admin.guard';
+import { InstructorGuard } from 'src/login/Instructor.guard';
 
 @Controller('contract-form')
 export class ContractFormController {
@@ -14,6 +16,7 @@ export class ContractFormController {
   }
 
   @Get()
+  @UseGuards(AdminGuard)
   findAll() {
     return this.contractFormService.findAll();
   }
@@ -24,6 +27,7 @@ export class ContractFormController {
   }
   
   @Patch(':id')
+  @UseGuards(AdminGuard)
   async update(@Param('id') id: number, @Body() updateContractFormDto: UpdateContractFormDto) {
     const updatedContract = await this.contractFormService.update(+id, updateContractFormDto);
     if (updatedContract) {
@@ -33,6 +37,7 @@ export class ContractFormController {
     }
   }
   @Delete(':id')
+  @UseGuards(AdminGuard)
   remove(@Param('id') id: number) {
     return this.contractFormService.remove(+id);
   }
