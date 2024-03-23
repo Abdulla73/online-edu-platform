@@ -12,7 +12,7 @@ export class InstructorGuard implements CanActivate {
       return false; // Deny access if user role is missing
     }
 
-    if (userRole !== 'Instructor ') {
+    if (userRole !== 'Instructor') {
       console.log("User is not an instructor. Role:", userRole);
       return false; // Deny access if user is not an admin
     }
